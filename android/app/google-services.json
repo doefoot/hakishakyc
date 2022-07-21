@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "567510021718",
+    "project_id": "hakisha-ekyc",
+    "storage_bucket": "hakisha-ekyc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567510021718:android:5ef25e2077ce799bc9adf7",
+        "android_client_info": {
+          "package_name": "com.mycompany.hakishakyc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "567510021718-tkh5ftjpkp42r91bi3h333tds0badivs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.hakishakyc",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "567510021718-4r81vnmo19vk4rdjmqtmm59k7pu7m8rc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgn1a89iMHYlEjI8HhCYNtbaRb8CiwzBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "567510021718-4r81vnmo19vk4rdjmqtmm59k7pu7m8rc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "567510021718-hj1juomr8b5nffmee8jltt6gp5369mr4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.hakishakyc"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
