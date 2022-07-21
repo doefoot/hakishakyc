@@ -4,9 +4,10 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../forgot_password/forgot_password_widget.dart';
-import '../main.dart';
+import '../home_menu/home_menu_widget.dart';
 import '../register/register_widget.dart';
 import '../verify_email/verify_email_widget.dart';
+import '../view_personal_info/view_personal_info_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -258,8 +259,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       await Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => NavBarPage(
-                                              initialPage: 'ViewPersonalInfo'),
+                                          builder: (context) =>
+                                              ViewPersonalInfoWidget(),
                                         ),
                                       );
                                     } else {
@@ -408,8 +409,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          NavBarPage(initialPage: 'HomeMenu'),
+                                      builder: (context) => HomeMenuWidget(),
                                     ),
                                     (r) => false,
                                   );
@@ -447,8 +447,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          NavBarPage(initialPage: 'HomeMenu'),
+                                      builder: (context) => HomeMenuWidget(),
                                     ),
                                     (r) => false,
                                   );

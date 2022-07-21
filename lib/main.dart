@@ -8,8 +8,6 @@ import 'auth/auth_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'index.dart';
 
 void main() async {
@@ -86,72 +84,8 @@ class _MyAppState extends State<MyApp> {
               ),
             )
           : currentUser.loggedIn
-              ? NavBarPage()
+              ? HomeMenuWidget()
               : LoginWidget(),
-    );
-  }
-}
-
-class NavBarPage extends StatefulWidget {
-  NavBarPage({Key key, this.initialPage}) : super(key: key);
-
-  final String initialPage;
-
-  @override
-  _NavBarPageState createState() => _NavBarPageState();
-}
-
-/// This is the private State class that goes with NavBarPage.
-class _NavBarPageState extends State<NavBarPage> {
-  String _currentPage = 'HomeMenu';
-
-  @override
-  void initState() {
-    super.initState();
-    _currentPage = widget.initialPage ?? _currentPage;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final tabs = {
-      'HomeMenu': HomeMenuWidget(),
-      'ViewPersonalInfo': ViewPersonalInfoWidget(),
-    };
-    final currentIndex = tabs.keys.toList().indexOf(_currentPage);
-    return Scaffold(
-      body: tabs[_currentPage],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
-        backgroundColor: FlutterFlowTheme.of(context).secondaryText,
-        selectedItemColor: Color(0xFF9E9FE3),
-        unselectedItemColor: FlutterFlowTheme.of(context).primaryBackground,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.house,
-              size: 24,
-            ),
-            activeIcon: Icon(
-              Icons.house,
-              size: 24,
-            ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.user,
-              size: 24,
-            ),
-            label: 'Personal',
-            tooltip: '',
-          )
-        ],
-      ),
     );
   }
 }

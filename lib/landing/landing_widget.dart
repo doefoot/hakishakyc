@@ -7,14 +7,14 @@ import '../register/register_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({Key key}) : super(key: key);
+class LandingWidget extends StatefulWidget {
+  const LandingWidget({Key key}) : super(key: key);
 
   @override
-  _HomePageWidgetState createState() => _HomePageWidgetState();
+  _LandingWidgetState createState() => _LandingWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget>
+class _LandingWidgetState extends State<LandingWidget>
     with TickerProviderStateMixin {
   final animationsMap = {
     'columnOnPageLoadAnimation1': AnimationInfo(
