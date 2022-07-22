@@ -78,7 +78,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   'Forgot Password',
                   style: FlutterFlowTheme.of(context).title1.override(
                         fontFamily: 'Poppins',
-                        fontSize: 32,
+                        fontSize: 30,
                       ),
                 ),
               ),

@@ -98,6 +98,7 @@ class _PassportDetailsWidgetState extends State<PassportDetailsWidget> {
                                 children: [
                                   Container(
                                     width: double.infinity,
+                                    height: 200,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEEEE),
                                       image: DecorationImage(

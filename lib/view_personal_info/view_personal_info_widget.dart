@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import '../home_menu/home_menu_widget.dart';
 import '../update_personal_info/update_personal_info_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -98,12 +99,17 @@ class _ViewPersonalInfoWidgetState extends State<ViewPersonalInfoWidget>
           borderWidth: 1,
           buttonSize: 60,
           icon: Icon(
-            Icons.arrow_back_rounded,
+            Icons.home,
             color: Colors.white,
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeMenuWidget(),
+              ),
+            );
           },
         ),
         title: Text(
@@ -146,6 +152,7 @@ class _ViewPersonalInfoWidgetState extends State<ViewPersonalInfoWidget>
                           children: [
                             Container(
                               width: double.infinity,
+                              height: 200,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
                                 image: DecorationImage(
@@ -259,7 +266,7 @@ class _ViewPersonalInfoWidgetState extends State<ViewPersonalInfoWidget>
                                             0, 4, 0, 0),
                                         child: AuthUserStreamWidget(
                                           child: Text(
-                                            currentUserDisplayName,
+                                            '${valueOrDefault(currentUserDocument?.fName, '')} ${valueOrDefault(currentUserDocument?.mName, '')} ${valueOrDefault(currentUserDocument?.lName, '')}',
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle1,
                                           ),

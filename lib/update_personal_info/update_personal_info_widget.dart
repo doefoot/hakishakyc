@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../home_menu/home_menu_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -30,9 +31,12 @@ class _UpdatePersonalInfoWidgetState extends State<UpdatePersonalInfoWidget> {
   @override
   void initState() {
     super.initState();
-    fNameController = TextEditingController();
-    mNameController = TextEditingController();
-    lNameController = TextEditingController();
+    fNameController = TextEditingController(
+        text: valueOrDefault(currentUserDocument?.fName, ''));
+    mNameController = TextEditingController(
+        text: valueOrDefault(currentUserDocument?.mName, ''));
+    lNameController = TextEditingController(
+        text: valueOrDefault(currentUserDocument?.lName, ''));
   }
 
   @override
@@ -48,12 +52,17 @@ class _UpdatePersonalInfoWidgetState extends State<UpdatePersonalInfoWidget> {
           borderWidth: 1,
           buttonSize: 60,
           icon: Icon(
-            Icons.arrow_back_rounded,
+            Icons.home,
             color: Colors.white,
             size: 30,
           ),
-          onPressed: () {
-            print('IconButton pressed ...');
+          onPressed: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeMenuWidget(),
+              ),
+            );
           },
         ),
         title: Text(
@@ -105,14 +114,67 @@ class _UpdatePersonalInfoWidgetState extends State<UpdatePersonalInfoWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 16, 0, 0),
+                                  child: AuthUserStreamWidget(
+                                    child: TextFormField(
+                                      controller: fNameController,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: 'First Name',
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .bodyText2,
+                                        hintText: 'First Name',
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .bodyText2,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        filled: true,
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        contentPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                18, 18, 18, 18),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: AuthUserStreamWidget(
                                   child: TextFormField(
-                                    controller: fNameController,
+                                    controller: mNameController,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'First Name',
+                                      labelText: 'Middle Name',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .bodyText2,
-                                      hintText: 'First Name',
+                                      hintText: 'Middle Name',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .bodyText2,
                                       enabledBorder: OutlineInputBorder(
@@ -148,87 +210,44 @@ class _UpdatePersonalInfoWidgetState extends State<UpdatePersonalInfoWidget> {
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: TextFormField(
-                                  controller: mNameController,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'Middle Name',
-                                    labelStyle:
-                                        FlutterFlowTheme.of(context).bodyText2,
-                                    hintText: 'Middle Name',
-                                    hintStyle:
-                                        FlutterFlowTheme.of(context).bodyText2,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    filled: true,
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
-                                            18, 18, 18, 18),
-                                  ),
-                                  style: FlutterFlowTheme.of(context).bodyText1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: Container(
                             decoration: BoxDecoration(),
-                            child: TextFormField(
-                              controller: lNameController,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Last Name',
-                                labelStyle:
-                                    FlutterFlowTheme.of(context).bodyText2,
-                                hintText: 'Surname',
-                                hintStyle:
-                                    FlutterFlowTheme.of(context).bodyText2,
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    width: 1,
+                            child: AuthUserStreamWidget(
+                              child: TextFormField(
+                                controller: lNameController,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Last Name',
+                                  labelStyle:
+                                      FlutterFlowTheme.of(context).bodyText2,
+                                  hintText: 'Surname',
+                                  hintStyle:
+                                      FlutterFlowTheme.of(context).bodyText2,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12),
                                   ),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    width: 1,
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12),
                                   ),
-                                  borderRadius: BorderRadius.circular(12),
+                                  filled: true,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  contentPadding:
+                                      EdgeInsetsDirectional.fromSTEB(
+                                          18, 18, 18, 18),
                                 ),
-                                filled: true,
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    18, 18, 18, 18),
+                                style: FlutterFlowTheme.of(context).bodyText1,
                               ),
-                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ),
                         ),
@@ -362,11 +381,13 @@ class _UpdatePersonalInfoWidgetState extends State<UpdatePersonalInfoWidget> {
                                   await currentUserReference
                                       .update(usersUpdateData);
 
-                                  final verifiedUserCreateData =
-                                      createVerifiedUserRecordData();
-                                  await VerifiedUserRecord.collection
-                                      .doc()
-                                      .set(verifiedUserCreateData);
+                                  final userDocumentsCreateData =
+                                      createUserDocumentsRecordData(
+                                    docRefToUsers: currentUserReference,
+                                  );
+                                  await UserDocumentsRecord.createDoc(
+                                          currentUserReference)
+                                      .set(userDocumentsCreateData);
                                 },
                                 text: 'Confirm',
                                 options: FFButtonOptions(

@@ -1,34 +1,30 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'documents_record.dart';
+part of 'user_documents_record.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<DocumentsRecord> _$documentsRecordSerializer =
-    new _$DocumentsRecordSerializer();
+Serializer<UserDocumentsRecord> _$userDocumentsRecordSerializer =
+    new _$UserDocumentsRecordSerializer();
 
-class _$DocumentsRecordSerializer
-    implements StructuredSerializer<DocumentsRecord> {
+class _$UserDocumentsRecordSerializer
+    implements StructuredSerializer<UserDocumentsRecord> {
   @override
-  final Iterable<Type> types = const [DocumentsRecord, _$DocumentsRecord];
+  final Iterable<Type> types = const [
+    UserDocumentsRecord,
+    _$UserDocumentsRecord
+  ];
   @override
-  final String wireName = 'DocumentsRecord';
+  final String wireName = 'UserDocumentsRecord';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, DocumentsRecord object,
+  Iterable<Object> serialize(
+      Serializers serializers, UserDocumentsRecord object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
     Object value;
-    value = object.userIDRef;
-    if (value != null) {
-      result
-        ..add('UserIDRef')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
-    }
     value = object.iDNo;
     if (value != null) {
       result
@@ -50,10 +46,17 @@ class _$DocumentsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.dLNo;
+    value = object.iDUploadDate;
     if (value != null) {
       result
-        ..add('DL_No')
+        ..add('ID_Upload_Date')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.dlNo;
+    if (value != null) {
+      result
+        ..add('DL_NO')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -70,6 +73,13 @@ class _$DocumentsRecordSerializer
         ..add('DL_Image')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.dLUploadDate;
+    if (value != null) {
+      result
+        ..add('DL_UploadDate')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
     }
     value = object.pPNo;
     if (value != null) {
@@ -92,26 +102,20 @@ class _$DocumentsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.iDUploadDate;
-    if (value != null) {
-      result
-        ..add('ID_UploadDate')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(DateTime)));
-    }
-    value = object.dLUploadDate;
-    if (value != null) {
-      result
-        ..add('DLUploadDate')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(DateTime)));
-    }
     value = object.pPUploadDate;
     if (value != null) {
       result
-        ..add('PPUploadDate')
+        ..add('PP_UploadDate')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
+    }
+    value = object.docRefToUsers;
+    if (value != null) {
+      result
+        ..add('DocRefToUsers')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType(Object)])));
     }
     value = object.reference;
     if (value != null) {
@@ -125,10 +129,10 @@ class _$DocumentsRecordSerializer
   }
 
   @override
-  DocumentsRecord deserialize(
+  UserDocumentsRecord deserialize(
       Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new DocumentsRecordBuilder();
+    final result = new UserDocumentsRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -136,12 +140,6 @@ class _$DocumentsRecordSerializer
       iterator.moveNext();
       final Object value = iterator.current;
       switch (key) {
-        case 'UserIDRef':
-          result.userIDRef = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
-          break;
         case 'ID_No':
           result.iDNo = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
@@ -154,8 +152,12 @@ class _$DocumentsRecordSerializer
           result.iDImage = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'DL_No':
-          result.dLNo = serializers.deserialize(value,
+        case 'ID_Upload_Date':
+          result.iDUploadDate = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+        case 'DL_NO':
+          result.dlNo = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'DL_Date':
@@ -165,6 +167,10 @@ class _$DocumentsRecordSerializer
         case 'DL_Image':
           result.dLImage = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
+          break;
+        case 'DL_UploadDate':
+          result.dLUploadDate = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime;
           break;
         case 'PP_No':
           result.pPNo = serializers.deserialize(value,
@@ -178,17 +184,15 @@ class _$DocumentsRecordSerializer
           result.pPImage = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'ID_UploadDate':
-          result.iDUploadDate = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
-          break;
-        case 'DLUploadDate':
-          result.dLUploadDate = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
-          break;
-        case 'PPUploadDate':
+        case 'PP_UploadDate':
           result.pPUploadDate = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+        case 'DocRefToUsers':
+          result.docRefToUsers = serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      DocumentReference, const [const FullType(Object)]))
+              as DocumentReference<Object>;
           break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
@@ -203,9 +207,7 @@ class _$DocumentsRecordSerializer
   }
 }
 
-class _$DocumentsRecord extends DocumentsRecord {
-  @override
-  final DocumentReference<Object> userIDRef;
+class _$UserDocumentsRecord extends UserDocumentsRecord {
   @override
   final String iDNo;
   @override
@@ -213,11 +215,15 @@ class _$DocumentsRecord extends DocumentsRecord {
   @override
   final String iDImage;
   @override
-  final String dLNo;
+  final DateTime iDUploadDate;
+  @override
+  final String dlNo;
   @override
   final DateTime dLDate;
   @override
   final String dLImage;
+  @override
+  final DateTime dLUploadDate;
   @override
   final String pPNo;
   @override
@@ -225,59 +231,59 @@ class _$DocumentsRecord extends DocumentsRecord {
   @override
   final String pPImage;
   @override
-  final DateTime iDUploadDate;
-  @override
-  final DateTime dLUploadDate;
-  @override
   final DateTime pPUploadDate;
+  @override
+  final DocumentReference<Object> docRefToUsers;
   @override
   final DocumentReference<Object> reference;
 
-  factory _$DocumentsRecord([void Function(DocumentsRecordBuilder) updates]) =>
-      (new DocumentsRecordBuilder()..update(updates)).build();
+  factory _$UserDocumentsRecord(
+          [void Function(UserDocumentsRecordBuilder) updates]) =>
+      (new UserDocumentsRecordBuilder()..update(updates)).build();
 
-  _$DocumentsRecord._(
-      {this.userIDRef,
-      this.iDNo,
+  _$UserDocumentsRecord._(
+      {this.iDNo,
       this.iDDate,
       this.iDImage,
-      this.dLNo,
+      this.iDUploadDate,
+      this.dlNo,
       this.dLDate,
       this.dLImage,
+      this.dLUploadDate,
       this.pPNo,
       this.pPDate,
       this.pPImage,
-      this.iDUploadDate,
-      this.dLUploadDate,
       this.pPUploadDate,
+      this.docRefToUsers,
       this.reference})
       : super._();
 
   @override
-  DocumentsRecord rebuild(void Function(DocumentsRecordBuilder) updates) =>
+  UserDocumentsRecord rebuild(
+          void Function(UserDocumentsRecordBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  DocumentsRecordBuilder toBuilder() =>
-      new DocumentsRecordBuilder()..replace(this);
+  UserDocumentsRecordBuilder toBuilder() =>
+      new UserDocumentsRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is DocumentsRecord &&
-        userIDRef == other.userIDRef &&
+    return other is UserDocumentsRecord &&
         iDNo == other.iDNo &&
         iDDate == other.iDDate &&
         iDImage == other.iDImage &&
-        dLNo == other.dLNo &&
+        iDUploadDate == other.iDUploadDate &&
+        dlNo == other.dlNo &&
         dLDate == other.dLDate &&
         dLImage == other.dLImage &&
+        dLUploadDate == other.dLUploadDate &&
         pPNo == other.pPNo &&
         pPDate == other.pPDate &&
         pPImage == other.pPImage &&
-        iDUploadDate == other.iDUploadDate &&
-        dLUploadDate == other.dLUploadDate &&
         pPUploadDate == other.pPUploadDate &&
+        docRefToUsers == other.docRefToUsers &&
         reference == other.reference;
   }
 
@@ -295,53 +301,46 @@ class _$DocumentsRecord extends DocumentsRecord {
                                         $jc(
                                             $jc(
                                                 $jc(
-                                                    $jc(
-                                                        $jc(0,
-                                                            userIDRef.hashCode),
-                                                        iDNo.hashCode),
-                                                    iDDate.hashCode),
-                                                iDImage.hashCode),
-                                            dLNo.hashCode),
+                                                    $jc($jc(0, iDNo.hashCode),
+                                                        iDDate.hashCode),
+                                                    iDImage.hashCode),
+                                                iDUploadDate.hashCode),
+                                            dlNo.hashCode),
                                         dLDate.hashCode),
                                     dLImage.hashCode),
-                                pPNo.hashCode),
-                            pPDate.hashCode),
-                        pPImage.hashCode),
-                    iDUploadDate.hashCode),
-                dLUploadDate.hashCode),
-            pPUploadDate.hashCode),
+                                dLUploadDate.hashCode),
+                            pPNo.hashCode),
+                        pPDate.hashCode),
+                    pPImage.hashCode),
+                pPUploadDate.hashCode),
+            docRefToUsers.hashCode),
         reference.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('DocumentsRecord')
-          ..add('userIDRef', userIDRef)
+    return (newBuiltValueToStringHelper('UserDocumentsRecord')
           ..add('iDNo', iDNo)
           ..add('iDDate', iDDate)
           ..add('iDImage', iDImage)
-          ..add('dLNo', dLNo)
+          ..add('iDUploadDate', iDUploadDate)
+          ..add('dlNo', dlNo)
           ..add('dLDate', dLDate)
           ..add('dLImage', dLImage)
+          ..add('dLUploadDate', dLUploadDate)
           ..add('pPNo', pPNo)
           ..add('pPDate', pPDate)
           ..add('pPImage', pPImage)
-          ..add('iDUploadDate', iDUploadDate)
-          ..add('dLUploadDate', dLUploadDate)
           ..add('pPUploadDate', pPUploadDate)
+          ..add('docRefToUsers', docRefToUsers)
           ..add('reference', reference))
         .toString();
   }
 }
 
-class DocumentsRecordBuilder
-    implements Builder<DocumentsRecord, DocumentsRecordBuilder> {
-  _$DocumentsRecord _$v;
-
-  DocumentReference<Object> _userIDRef;
-  DocumentReference<Object> get userIDRef => _$this._userIDRef;
-  set userIDRef(DocumentReference<Object> userIDRef) =>
-      _$this._userIDRef = userIDRef;
+class UserDocumentsRecordBuilder
+    implements Builder<UserDocumentsRecord, UserDocumentsRecordBuilder> {
+  _$UserDocumentsRecord _$v;
 
   String _iDNo;
   String get iDNo => _$this._iDNo;
@@ -355,9 +354,14 @@ class DocumentsRecordBuilder
   String get iDImage => _$this._iDImage;
   set iDImage(String iDImage) => _$this._iDImage = iDImage;
 
-  String _dLNo;
-  String get dLNo => _$this._dLNo;
-  set dLNo(String dLNo) => _$this._dLNo = dLNo;
+  DateTime _iDUploadDate;
+  DateTime get iDUploadDate => _$this._iDUploadDate;
+  set iDUploadDate(DateTime iDUploadDate) =>
+      _$this._iDUploadDate = iDUploadDate;
+
+  String _dlNo;
+  String get dlNo => _$this._dlNo;
+  set dlNo(String dlNo) => _$this._dlNo = dlNo;
 
   DateTime _dLDate;
   DateTime get dLDate => _$this._dLDate;
@@ -366,6 +370,11 @@ class DocumentsRecordBuilder
   String _dLImage;
   String get dLImage => _$this._dLImage;
   set dLImage(String dLImage) => _$this._dLImage = dLImage;
+
+  DateTime _dLUploadDate;
+  DateTime get dLUploadDate => _$this._dLUploadDate;
+  set dLUploadDate(DateTime dLUploadDate) =>
+      _$this._dLUploadDate = dLUploadDate;
 
   String _pPNo;
   String get pPNo => _$this._pPNo;
@@ -379,46 +388,41 @@ class DocumentsRecordBuilder
   String get pPImage => _$this._pPImage;
   set pPImage(String pPImage) => _$this._pPImage = pPImage;
 
-  DateTime _iDUploadDate;
-  DateTime get iDUploadDate => _$this._iDUploadDate;
-  set iDUploadDate(DateTime iDUploadDate) =>
-      _$this._iDUploadDate = iDUploadDate;
-
-  DateTime _dLUploadDate;
-  DateTime get dLUploadDate => _$this._dLUploadDate;
-  set dLUploadDate(DateTime dLUploadDate) =>
-      _$this._dLUploadDate = dLUploadDate;
-
   DateTime _pPUploadDate;
   DateTime get pPUploadDate => _$this._pPUploadDate;
   set pPUploadDate(DateTime pPUploadDate) =>
       _$this._pPUploadDate = pPUploadDate;
+
+  DocumentReference<Object> _docRefToUsers;
+  DocumentReference<Object> get docRefToUsers => _$this._docRefToUsers;
+  set docRefToUsers(DocumentReference<Object> docRefToUsers) =>
+      _$this._docRefToUsers = docRefToUsers;
 
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
       _$this._reference = reference;
 
-  DocumentsRecordBuilder() {
-    DocumentsRecord._initializeBuilder(this);
+  UserDocumentsRecordBuilder() {
+    UserDocumentsRecord._initializeBuilder(this);
   }
 
-  DocumentsRecordBuilder get _$this {
+  UserDocumentsRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _userIDRef = $v.userIDRef;
       _iDNo = $v.iDNo;
       _iDDate = $v.iDDate;
       _iDImage = $v.iDImage;
-      _dLNo = $v.dLNo;
+      _iDUploadDate = $v.iDUploadDate;
+      _dlNo = $v.dlNo;
       _dLDate = $v.dLDate;
       _dLImage = $v.dLImage;
+      _dLUploadDate = $v.dLUploadDate;
       _pPNo = $v.pPNo;
       _pPDate = $v.pPDate;
       _pPImage = $v.pPImage;
-      _iDUploadDate = $v.iDUploadDate;
-      _dLUploadDate = $v.dLUploadDate;
       _pPUploadDate = $v.pPUploadDate;
+      _docRefToUsers = $v.docRefToUsers;
       _reference = $v.reference;
       _$v = null;
     }
@@ -426,33 +430,33 @@ class DocumentsRecordBuilder
   }
 
   @override
-  void replace(DocumentsRecord other) {
+  void replace(UserDocumentsRecord other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$DocumentsRecord;
+    _$v = other as _$UserDocumentsRecord;
   }
 
   @override
-  void update(void Function(DocumentsRecordBuilder) updates) {
+  void update(void Function(UserDocumentsRecordBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$DocumentsRecord build() {
+  _$UserDocumentsRecord build() {
     final _$result = _$v ??
-        new _$DocumentsRecord._(
-            userIDRef: userIDRef,
+        new _$UserDocumentsRecord._(
             iDNo: iDNo,
             iDDate: iDDate,
             iDImage: iDImage,
-            dLNo: dLNo,
+            iDUploadDate: iDUploadDate,
+            dlNo: dlNo,
             dLDate: dLDate,
             dLImage: dLImage,
+            dLUploadDate: dLUploadDate,
             pPNo: pPNo,
             pPDate: pPDate,
             pPImage: pPImage,
-            iDUploadDate: iDUploadDate,
-            dLUploadDate: dLUploadDate,
             pPUploadDate: pPUploadDate,
+            docRefToUsers: docRefToUsers,
             reference: reference);
     replace(_$result);
     return _$result;

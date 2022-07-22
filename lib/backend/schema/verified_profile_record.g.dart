@@ -1,34 +1,30 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'verified_user_record.dart';
+part of 'verified_profile_record.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<VerifiedUserRecord> _$verifiedUserRecordSerializer =
-    new _$VerifiedUserRecordSerializer();
+Serializer<VerifiedProfileRecord> _$verifiedProfileRecordSerializer =
+    new _$VerifiedProfileRecordSerializer();
 
-class _$VerifiedUserRecordSerializer
-    implements StructuredSerializer<VerifiedUserRecord> {
+class _$VerifiedProfileRecordSerializer
+    implements StructuredSerializer<VerifiedProfileRecord> {
   @override
-  final Iterable<Type> types = const [VerifiedUserRecord, _$VerifiedUserRecord];
+  final Iterable<Type> types = const [
+    VerifiedProfileRecord,
+    _$VerifiedProfileRecord
+  ];
   @override
-  final String wireName = 'VerifiedUserRecord';
+  final String wireName = 'VerifiedProfileRecord';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, VerifiedUserRecord object,
+  Iterable<Object> serialize(
+      Serializers serializers, VerifiedProfileRecord object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
     Object value;
-    value = object.userIDRef;
-    if (value != null) {
-      result
-        ..add('UserIDRef')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
-    }
     value = object.email;
     if (value != null) {
       result
@@ -39,16 +35,24 @@ class _$VerifiedUserRecordSerializer
     value = object.name;
     if (value != null) {
       result
-        ..add('Name')
+        ..add('name')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     value = object.verificationDate;
     if (value != null) {
       result
-        ..add('VerificationDate')
+        ..add('verificationDate')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
+    }
+    value = object.verifiedRefToUser;
+    if (value != null) {
+      result
+        ..add('VerifiedRefToUser')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType(Object)])));
     }
     value = object.reference;
     if (value != null) {
@@ -62,10 +66,10 @@ class _$VerifiedUserRecordSerializer
   }
 
   @override
-  VerifiedUserRecord deserialize(
+  VerifiedProfileRecord deserialize(
       Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new VerifiedUserRecordBuilder();
+    final result = new VerifiedProfileRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -73,23 +77,23 @@ class _$VerifiedUserRecordSerializer
       iterator.moveNext();
       final Object value = iterator.current;
       switch (key) {
-        case 'UserIDRef':
-          result.userIDRef = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
-          break;
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'Name':
+        case 'name':
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'VerificationDate':
+        case 'verificationDate':
           result.verificationDate = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+        case 'VerifiedRefToUser':
+          result.verifiedRefToUser = serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      DocumentReference, const [const FullType(Object)]))
+              as DocumentReference<Object>;
           break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
@@ -104,9 +108,7 @@ class _$VerifiedUserRecordSerializer
   }
 }
 
-class _$VerifiedUserRecord extends VerifiedUserRecord {
-  @override
-  final DocumentReference<Object> userIDRef;
+class _$VerifiedProfileRecord extends VerifiedProfileRecord {
   @override
   final String email;
   @override
@@ -114,68 +116,67 @@ class _$VerifiedUserRecord extends VerifiedUserRecord {
   @override
   final DateTime verificationDate;
   @override
+  final DocumentReference<Object> verifiedRefToUser;
+  @override
   final DocumentReference<Object> reference;
 
-  factory _$VerifiedUserRecord(
-          [void Function(VerifiedUserRecordBuilder) updates]) =>
-      (new VerifiedUserRecordBuilder()..update(updates)).build();
+  factory _$VerifiedProfileRecord(
+          [void Function(VerifiedProfileRecordBuilder) updates]) =>
+      (new VerifiedProfileRecordBuilder()..update(updates)).build();
 
-  _$VerifiedUserRecord._(
-      {this.userIDRef,
-      this.email,
+  _$VerifiedProfileRecord._(
+      {this.email,
       this.name,
       this.verificationDate,
+      this.verifiedRefToUser,
       this.reference})
       : super._();
 
   @override
-  VerifiedUserRecord rebuild(
-          void Function(VerifiedUserRecordBuilder) updates) =>
+  VerifiedProfileRecord rebuild(
+          void Function(VerifiedProfileRecordBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  VerifiedUserRecordBuilder toBuilder() =>
-      new VerifiedUserRecordBuilder()..replace(this);
+  VerifiedProfileRecordBuilder toBuilder() =>
+      new VerifiedProfileRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is VerifiedUserRecord &&
-        userIDRef == other.userIDRef &&
+    return other is VerifiedProfileRecord &&
         email == other.email &&
         name == other.name &&
         verificationDate == other.verificationDate &&
+        verifiedRefToUser == other.verifiedRefToUser &&
         reference == other.reference;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, userIDRef.hashCode), email.hashCode), name.hashCode),
-            verificationDate.hashCode),
+        $jc(
+            $jc($jc($jc(0, email.hashCode), name.hashCode),
+                verificationDate.hashCode),
+            verifiedRefToUser.hashCode),
         reference.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('VerifiedUserRecord')
-          ..add('userIDRef', userIDRef)
+    return (newBuiltValueToStringHelper('VerifiedProfileRecord')
           ..add('email', email)
           ..add('name', name)
           ..add('verificationDate', verificationDate)
+          ..add('verifiedRefToUser', verifiedRefToUser)
           ..add('reference', reference))
         .toString();
   }
 }
 
-class VerifiedUserRecordBuilder
-    implements Builder<VerifiedUserRecord, VerifiedUserRecordBuilder> {
-  _$VerifiedUserRecord _$v;
-
-  DocumentReference<Object> _userIDRef;
-  DocumentReference<Object> get userIDRef => _$this._userIDRef;
-  set userIDRef(DocumentReference<Object> userIDRef) =>
-      _$this._userIDRef = userIDRef;
+class VerifiedProfileRecordBuilder
+    implements Builder<VerifiedProfileRecord, VerifiedProfileRecordBuilder> {
+  _$VerifiedProfileRecord _$v;
 
   String _email;
   String get email => _$this._email;
@@ -190,22 +191,27 @@ class VerifiedUserRecordBuilder
   set verificationDate(DateTime verificationDate) =>
       _$this._verificationDate = verificationDate;
 
+  DocumentReference<Object> _verifiedRefToUser;
+  DocumentReference<Object> get verifiedRefToUser => _$this._verifiedRefToUser;
+  set verifiedRefToUser(DocumentReference<Object> verifiedRefToUser) =>
+      _$this._verifiedRefToUser = verifiedRefToUser;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
       _$this._reference = reference;
 
-  VerifiedUserRecordBuilder() {
-    VerifiedUserRecord._initializeBuilder(this);
+  VerifiedProfileRecordBuilder() {
+    VerifiedProfileRecord._initializeBuilder(this);
   }
 
-  VerifiedUserRecordBuilder get _$this {
+  VerifiedProfileRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _userIDRef = $v.userIDRef;
       _email = $v.email;
       _name = $v.name;
       _verificationDate = $v.verificationDate;
+      _verifiedRefToUser = $v.verifiedRefToUser;
       _reference = $v.reference;
       _$v = null;
     }
@@ -213,24 +219,24 @@ class VerifiedUserRecordBuilder
   }
 
   @override
-  void replace(VerifiedUserRecord other) {
+  void replace(VerifiedProfileRecord other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$VerifiedUserRecord;
+    _$v = other as _$VerifiedProfileRecord;
   }
 
   @override
-  void update(void Function(VerifiedUserRecordBuilder) updates) {
+  void update(void Function(VerifiedProfileRecordBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$VerifiedUserRecord build() {
+  _$VerifiedProfileRecord build() {
     final _$result = _$v ??
-        new _$VerifiedUserRecord._(
-            userIDRef: userIDRef,
+        new _$VerifiedProfileRecord._(
             email: email,
             name: name,
             verificationDate: verificationDate,
+            verifiedRefToUser: verifiedRefToUser,
             reference: reference);
     replace(_$result);
     return _$result;

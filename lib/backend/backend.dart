@@ -5,8 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
-import 'schema/documents_record.dart';
-import 'schema/verified_user_record.dart';
+import 'schema/verified_profile_record.dart';
+import 'schema/user_documents_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -15,8 +15,8 @@ export 'schema/index.dart';
 export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
-export 'schema/documents_record.dart';
-export 'schema/verified_user_record.dart';
+export 'schema/verified_profile_record.dart';
+export 'schema/user_documents_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -60,84 +60,90 @@ Future<FFFirestorePage<UsersRecord>> queryUsersRecordPage({
       isStream: isStream,
     );
 
-/// Functions to query DocumentsRecords (as a Stream and as a Future).
-Stream<List<DocumentsRecord>> queryDocumentsRecord({
+/// Functions to query VerifiedProfileRecords (as a Stream and as a Future).
+Stream<List<VerifiedProfileRecord>> queryVerifiedProfileRecord({
+  DocumentReference parent,
   Query Function(Query) queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      DocumentsRecord.collection,
-      DocumentsRecord.serializer,
+      VerifiedProfileRecord.collection(parent),
+      VerifiedProfileRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<DocumentsRecord>> queryDocumentsRecordOnce({
+Future<List<VerifiedProfileRecord>> queryVerifiedProfileRecordOnce({
+  DocumentReference parent,
   Query Function(Query) queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      DocumentsRecord.collection,
-      DocumentsRecord.serializer,
+      VerifiedProfileRecord.collection(parent),
+      VerifiedProfileRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<FFFirestorePage<DocumentsRecord>> queryDocumentsRecordPage({
+Future<FFFirestorePage<VerifiedProfileRecord>> queryVerifiedProfileRecordPage({
+  DocumentReference parent,
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
   bool isStream,
 }) =>
     queryCollectionPage(
-      DocumentsRecord.collection,
-      DocumentsRecord.serializer,
+      VerifiedProfileRecord.collection(parent),
+      VerifiedProfileRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
       isStream: isStream,
     );
 
-/// Functions to query VerifiedUserRecords (as a Stream and as a Future).
-Stream<List<VerifiedUserRecord>> queryVerifiedUserRecord({
+/// Functions to query UserDocumentsRecords (as a Stream and as a Future).
+Stream<List<UserDocumentsRecord>> queryUserDocumentsRecord({
+  DocumentReference parent,
   Query Function(Query) queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      VerifiedUserRecord.collection,
-      VerifiedUserRecord.serializer,
+      UserDocumentsRecord.collection(parent),
+      UserDocumentsRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<VerifiedUserRecord>> queryVerifiedUserRecordOnce({
+Future<List<UserDocumentsRecord>> queryUserDocumentsRecordOnce({
+  DocumentReference parent,
   Query Function(Query) queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      VerifiedUserRecord.collection,
-      VerifiedUserRecord.serializer,
+      UserDocumentsRecord.collection(parent),
+      UserDocumentsRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<FFFirestorePage<VerifiedUserRecord>> queryVerifiedUserRecordPage({
+Future<FFFirestorePage<UserDocumentsRecord>> queryUserDocumentsRecordPage({
+  DocumentReference parent,
   Query Function(Query) queryBuilder,
   DocumentSnapshot nextPageMarker,
   int pageSize,
   bool isStream,
 }) =>
     queryCollectionPage(
-      VerifiedUserRecord.collection,
-      VerifiedUserRecord.serializer,
+      UserDocumentsRecord.collection(parent),
+      UserDocumentsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

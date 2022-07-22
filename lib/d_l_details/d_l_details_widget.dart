@@ -2,6 +2,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../update_d_l/update_d_l_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -98,6 +99,7 @@ class _DLDetailsWidgetState extends State<DLDetailsWidget> {
                                 children: [
                                   Container(
                                     width: double.infinity,
+                                    height: 200,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEEEE),
                                       image: DecorationImage(
@@ -198,8 +200,14 @@ class _DLDetailsWidgetState extends State<DLDetailsWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 20, 0, 20),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Update pressed ...');
+                                      onPressed: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                UpdateDLWidget(),
+                                          ),
+                                        );
                                       },
                                       text: 'Update Details',
                                       options: FFButtonOptions(

@@ -71,7 +71,7 @@ class _VerifyEmailWidgetState extends State<VerifyEmailWidget> {
                   'Verify Your Email',
                   style: FlutterFlowTheme.of(context).title1.override(
                         fontFamily: 'Poppins',
-                        fontSize: 32,
+                        fontSize: 30,
                       ),
                 ),
               ),

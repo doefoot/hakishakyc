@@ -32,12 +32,17 @@ class _SelectDocumentWidgetState extends State<SelectDocumentWidget> {
           borderWidth: 1,
           buttonSize: 60,
           icon: Icon(
-            Icons.arrow_back_rounded,
+            Icons.home,
             color: Colors.white,
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeMenuWidget(),
+              ),
+            );
           },
         ),
         title: Text(

@@ -121,6 +121,7 @@ class _UpdatePassportWidgetState extends State<UpdatePassportWidget> {
                                   ),
                                   Container(
                                     width: double.infinity,
+                                    height: 200,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEEEE),
                                       image: DecorationImage(
@@ -251,8 +252,14 @@ class _UpdatePassportWidgetState extends State<UpdatePassportWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 20, 0, 20),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Update pressed ...');
+                                      onPressed: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                UpdatePassportWidget(),
+                                          ),
+                                        );
                                       },
                                       text: 'Confirm\n',
                                       options: FFButtonOptions(
