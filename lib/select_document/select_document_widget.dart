@@ -1,11 +1,7 @@
-import '../d_l_details/d_l_details_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_menu/home_menu_widget.dart';
-import '../i_d_details/i_d_details_widget.dart';
-import '../passport_details/passport_details_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -37,12 +33,7 @@ class _SelectDocumentWidgetState extends State<SelectDocumentWidget> {
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomeMenuWidget(),
-              ),
-            );
+            context.pushNamed('HomeMenu');
           },
         ),
         title: Text(
@@ -111,12 +102,7 @@ class _SelectDocumentWidgetState extends State<SelectDocumentWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => IDDetailsWidget(),
-                                      ),
-                                    );
+                                    context.pushNamed('IDDetails');
                                   },
                                   text: 'ID Card',
                                   options: FFButtonOptions(
@@ -143,12 +129,7 @@ class _SelectDocumentWidgetState extends State<SelectDocumentWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => DLDetailsWidget(),
-                                      ),
-                                    );
+                                    context.pushNamed('DLDetails');
                                   },
                                   text: 'Driver\'s License',
                                   options: FFButtonOptions(
@@ -175,13 +156,7 @@ class _SelectDocumentWidgetState extends State<SelectDocumentWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            PassportDetailsWidget(),
-                                      ),
-                                    );
+                                    context.pushNamed('PassportDetails');
                                   },
                                   text: 'Passport',
                                   options: FFButtonOptions(
@@ -208,12 +183,7 @@ class _SelectDocumentWidgetState extends State<SelectDocumentWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => HomeMenuWidget(),
-                                      ),
-                                    );
+                                    context.pushNamed('HomeMenu');
                                   },
                                   text: 'Back Home',
                                   options: FFButtonOptions(

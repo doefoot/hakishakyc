@@ -4,8 +4,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../login/login_widget.dart';
-import '../verify_email/verify_email_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -300,6 +298,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             children: [
                               FFButtonWidget(
                                 onPressed: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
                                   if (passwordController?.text !=
                                       passwordConfirmController?.text) {
                                     ScaffoldMessenger.of(context).showSnackBar(
@@ -329,15 +328,16 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                           currentUserReference)
                                       .set(userDocumentsCreateData);
                                   await sendEmailVerification();
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.leftToRight,
-                                      duration: Duration(milliseconds: 300),
-                                      reverseDuration:
-                                          Duration(milliseconds: 300),
-                                      child: VerifyEmailWidget(),
-                                    ),
+                                  context.pushNamedAuth(
+                                    'VerifyEmail',
+                                    mounted,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.leftToRight,
+                                      ),
+                                    },
                                   );
                                 },
                                 text: 'Create Account',
@@ -379,12 +379,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                       0, 0, 0, 20),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => LoginWidget(),
-                                        ),
-                                      );
+                                      context.pushNamed('Login');
                                     },
                                     text: 'Log In',
                                     options: FFButtonOptions(

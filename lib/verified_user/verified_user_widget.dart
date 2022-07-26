@@ -3,12 +3,17 @@ import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../home_menu/home_menu_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class VerifiedUserWidget extends StatefulWidget {
-  const VerifiedUserWidget({Key key}) : super(key: key);
+  const VerifiedUserWidget({
+    Key key,
+    this.verifiedParam,
+  }) : super(key: key);
+
+  final DocumentReference verifiedParam;
 
   @override
   _VerifiedUserWidgetState createState() => _VerifiedUserWidgetState();
@@ -80,12 +85,7 @@ class _VerifiedUserWidgetState extends State<VerifiedUserWidget>
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomeMenuWidget(),
-              ),
-            );
+            context.pushNamed('HomeMenu');
           },
         ),
         title: Text(

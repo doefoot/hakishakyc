@@ -7,8 +7,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
-import '../home_menu/home_menu_widget.dart';
-import '../update_personal_info/update_personal_info_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -104,12 +102,7 @@ class _ViewPersonalInfoWidgetState extends State<ViewPersonalInfoWidget>
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomeMenuWidget(),
-              ),
-            );
+            context.pushNamed('HomeMenu');
           },
         ),
         title: Text(
@@ -379,13 +372,7 @@ class _ViewPersonalInfoWidgetState extends State<ViewPersonalInfoWidget>
                         padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    UpdatePersonalInfoWidget(),
-                              ),
-                            );
+                            context.pushNamed('UpdatePersonalInfo');
                           },
                           text: 'Update Details',
                           options: FFButtonOptions(

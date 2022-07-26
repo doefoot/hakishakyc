@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_menu/home_menu_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -57,12 +56,7 @@ class _UpdatePersonalInfoWidgetState extends State<UpdatePersonalInfoWidget> {
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomeMenuWidget(),
-              ),
-            );
+            context.pushNamed('HomeMenu');
           },
         ),
         title: Text(
@@ -381,13 +375,16 @@ class _UpdatePersonalInfoWidgetState extends State<UpdatePersonalInfoWidget> {
                                   await currentUserReference
                                       .update(usersUpdateData);
 
-                                  final userDocumentsCreateData =
-                                      createUserDocumentsRecordData(
-                                    docRefToUsers: currentUserReference,
+                                  final verifiedProfileCreateData =
+                                      createVerifiedProfileRecordData(
+                                    email: currentUserEmail,
+                                    name:
+                                        '${fNameController.text} ${mNameController.text} ${lNameController.text}',
+                                    verificationDate: getCurrentTimestamp,
                                   );
-                                  await UserDocumentsRecord.createDoc(
+                                  await VerifiedProfileRecord.createDoc(
                                           currentUserReference)
-                                      .set(userDocumentsCreateData);
+                                      .set(verifiedProfileCreateData);
                                 },
                                 text: 'Confirm',
                                 options: FFButtonOptions(

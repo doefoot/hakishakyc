@@ -55,7 +55,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                           size: 24,
                         ),
                         onPressed: () async {
-                          Navigator.pop(context);
+                          context.pop();
                         },
                       ),
                     ),
@@ -78,7 +78,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   'Forgot Password',
                   style: FlutterFlowTheme.of(context).title1.override(
                         fontFamily: 'Poppins',
-                        fontSize: 30,
+                        fontSize: 25,
                       ),
                 ),
               ),

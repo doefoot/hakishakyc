@@ -8,9 +8,9 @@ export 'view_personal_info/view_personal_info_widget.dart'
     show ViewPersonalInfoWidget;
 export 'update_personal_info/update_personal_info_widget.dart'
     show UpdatePersonalInfoWidget;
-export 'generate_links/generate_links_widget.dart' show GenerateLinksWidget;
 export 'address/address_widget.dart' show AddressWidget;
 export 'verified_user/verified_user_widget.dart' show VerifiedUserWidget;
+export 'generate_links/generate_links_widget.dart' show GenerateLinksWidget;
 export 'select_document/select_document_widget.dart' show SelectDocumentWidget;
 export 'i_d_details/i_d_details_widget.dart' show IDDetailsWidget;
 export 'update_i_d/update_i_d_widget.dart' show UpdateIDWidget;

@@ -4,7 +4,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../update_i_d/update_i_d_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -65,7 +64,7 @@ class _IDDetailsWidgetState extends State<IDDetailsWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                Navigator.pop(context);
+                context.pop();
               },
             ),
             title: Text(
@@ -245,12 +244,15 @@ class _IDDetailsWidgetState extends State<IDDetailsWidget> {
                                             0, 20, 0, 20),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            await Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    UpdateIDWidget(),
-                                              ),
+                                            context.pushNamed(
+                                              'UpdateID',
+                                              queryParams: {
+                                                'idParameter': serializeParam(
+                                                    iDDetailsUserDocumentsRecord
+                                                        .reference,
+                                                    ParamType
+                                                        .DocumentReference),
+                                              }.withoutNulls,
                                             );
                                           },
                                           text: 'Update Details',

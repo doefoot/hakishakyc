@@ -6,13 +6,19 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UpdateDLWidget extends StatefulWidget {
-  const UpdateDLWidget({Key key}) : super(key: key);
+  const UpdateDLWidget({
+    Key key,
+    this.dlParameter,
+  }) : super(key: key);
+
+  final DocumentReference dlParameter;
 
   @override
   _UpdateDLWidgetState createState() => _UpdateDLWidgetState();
@@ -26,13 +32,8 @@ class _UpdateDLWidgetState extends State<UpdateDLWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<UserDocumentsRecord>>(
-      stream: queryUserDocumentsRecord(
-        parent: currentUserReference,
-        queryBuilder: (userDocumentsRecord) => userDocumentsRecord
-            .where('DocRefToUsers', isEqualTo: currentUserReference),
-        singleRecord: true,
-      ),
+    return StreamBuilder<UserDocumentsRecord>(
+      stream: UserDocumentsRecord.getDocument(widget.dlParameter),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -46,16 +47,7 @@ class _UpdateDLWidgetState extends State<UpdateDLWidget> {
             ),
           );
         }
-        List<UserDocumentsRecord> updateDLUserDocumentsRecordList =
-            snapshot.data;
-        // Return an empty Container when the document does not exist.
-        if (snapshot.data.isEmpty) {
-          return Container();
-        }
-        final updateDLUserDocumentsRecord =
-            updateDLUserDocumentsRecordList.isNotEmpty
-                ? updateDLUserDocumentsRecordList.first
-                : null;
+        final updateDLUserDocumentsRecord = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
@@ -72,7 +64,7 @@ class _UpdateDLWidgetState extends State<UpdateDLWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                Navigator.pop(context);
+                context.pop();
               },
             ),
             title: Text(
@@ -210,8 +202,9 @@ class _UpdateDLWidgetState extends State<UpdateDLWidget> {
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(8),
-                                            child: Image.asset(
-                                              'assets/images/df3hg_',
+                                            child: Image.network(
+                                              updateDLUserDocumentsRecord
+                                                  .dLImage,
                                               width: double.infinity,
                                               height: 200,
                                               fit: BoxFit.cover,
@@ -341,8 +334,37 @@ class _UpdateDLWidgetState extends State<UpdateDLWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 20, 0, 20),
                                         child: FFButtonWidget(
-                                          onPressed: () {
-                                            print('Update pressed ...');
+                                          onPressed: () async {
+                                            if (updateDLUserDocumentsRecord !=
+                                                null) {
+                                              final userDocumentsUpdateData =
+                                                  createUserDocumentsRecordData(
+                                                dlNo:
+                                                    dLNoController?.text ?? '',
+                                                dLDate: datePicked,
+                                                dLUploadDate:
+                                                    getCurrentTimestamp,
+                                                dLImage: uploadedFileUrl,
+                                              );
+                                              await updateDLUserDocumentsRecord
+                                                  .reference
+                                                  .update(
+                                                      userDocumentsUpdateData);
+                                            } else {
+                                              final userDocumentsCreateData =
+                                                  createUserDocumentsRecordData(
+                                                dlNo:
+                                                    dLNoController?.text ?? '',
+                                                dLDate: datePicked,
+                                                dLImage: uploadedFileUrl,
+                                                dLUploadDate:
+                                                    getCurrentTimestamp,
+                                              );
+                                              await UserDocumentsRecord.createDoc(
+                                                      updateDLUserDocumentsRecord
+                                                          .docRefToUsers)
+                                                  .set(userDocumentsCreateData);
+                                            }
                                           },
                                           text: 'Confirm',
                                           options: FFButtonOptions(

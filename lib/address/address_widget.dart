@@ -4,7 +4,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_menu/home_menu_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -70,12 +69,7 @@ class _AddressWidgetState extends State<AddressWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomeMenuWidget(),
-                  ),
-                );
+                context.pushNamed('HomeMenu');
               },
             ),
             title: Text(
@@ -343,13 +337,7 @@ class _AddressWidgetState extends State<AddressWidget> {
                                       );
                                       await currentUserReference
                                           .update(usersUpdateData);
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              HomeMenuWidget(),
-                                        ),
-                                      );
+                                      context.pushNamed('HomeMenu');
                                     },
                                     text: 'Confirm',
                                     options: FFButtonOptions(

@@ -2,7 +2,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../login/login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -48,7 +47,7 @@ class _VerifyEmailWidgetState extends State<VerifyEmailWidget> {
                           size: 24,
                         ),
                         onPressed: () async {
-                          Navigator.pop(context);
+                          context.pop();
                         },
                       ),
                     ),
@@ -71,7 +70,7 @@ class _VerifyEmailWidgetState extends State<VerifyEmailWidget> {
                   'Verify Your Email',
                   style: FlutterFlowTheme.of(context).title1.override(
                         fontFamily: 'Poppins',
-                        fontSize: 30,
+                        fontSize: 25,
                       ),
                 ),
               ),
@@ -111,12 +110,7 @@ class _VerifyEmailWidgetState extends State<VerifyEmailWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
               child: FFButtonWidget(
                 onPressed: () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LoginWidget(),
-                    ),
-                  );
+                  context.pushNamed('Login');
                 },
                 text: 'Back to Login Page',
                 options: FFButtonOptions(

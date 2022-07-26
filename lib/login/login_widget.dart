@@ -3,11 +3,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../forgot_password/forgot_password_widget.dart';
-import '../home_menu/home_menu_widget.dart';
-import '../register/register_widget.dart';
-import '../verify_email/verify_email_widget.dart';
-import '../view_personal_info/view_personal_info_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -246,6 +241,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                               children: [
                                 FFButtonWidget(
                                   onPressed: () async {
+                                    GoRouter.of(context).prepareAuthEvent();
+
                                     final user = await signInWithEmail(
                                       context,
                                       emailAddressController.text,
@@ -256,21 +253,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     }
 
                                     if (currentUserEmailVerified) {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              ViewPersonalInfoWidget(),
-                                        ),
-                                      );
+                                      context.pushNamedAuth(
+                                          'ViewPersonalInfo', mounted);
                                     } else {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              VerifyEmailWidget(),
-                                        ),
-                                      );
+                                      context.pushNamedAuth(
+                                          'VerifyEmail', mounted);
                                     }
                                   },
                                   text: 'Login',
@@ -297,13 +284,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       0, 20, 0, 0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              ForgotPasswordWidget(),
-                                        ),
-                                      );
+                                      context.pushNamed('ForgotPassword');
                                     },
                                     text: 'Forgot Password?',
                                     options: FFButtonOptions(
@@ -347,13 +328,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       0, 0, 0, 20),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              RegisterWidget(),
-                                        ),
-                                      );
+                                      context.pushNamed('Register');
                                     },
                                     text: 'Create Account',
                                     options: FFButtonOptions(
@@ -402,17 +377,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                             children: [
                               InkWell(
                                 onTap: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
                                   final user = await signInWithGoogle(context);
                                   if (user == null) {
                                     return;
                                   }
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => HomeMenuWidget(),
-                                    ),
-                                    (r) => false,
-                                  );
+                                  context.goNamedAuth('HomeMenu', mounted);
                                 },
                                 child: Container(
                                   width: 50,
@@ -440,17 +410,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                               ),
                               InkWell(
                                 onTap: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
                                   final user = await signInWithApple(context);
                                   if (user == null) {
                                     return;
                                   }
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => HomeMenuWidget(),
-                                    ),
-                                    (r) => false,
-                                  );
+                                  context.goNamedAuth('HomeMenu', mounted);
                                 },
                                 child: Container(
                                   width: 50,

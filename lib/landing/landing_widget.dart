@@ -2,8 +2,6 @@ import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../login/login_widget.dart';
-import '../register/register_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -141,12 +139,7 @@ class _LandingWidgetState extends State<LandingWidget>
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoginWidget(),
-                                ),
-                              );
+                              context.pushNamed('Login');
                             },
                             text: 'Log In',
                             options: FFButtonOptions(
@@ -171,12 +164,7 @@ class _LandingWidgetState extends State<LandingWidget>
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RegisterWidget(),
-                                ),
-                              );
+                              context.pushNamed('Register');
                             },
                             text: 'Create Account',
                             options: FFButtonOptions(

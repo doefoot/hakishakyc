@@ -1,9 +1,11 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/upload_media.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -11,7 +13,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UpdateIDWidget extends StatefulWidget {
-  const UpdateIDWidget({Key key}) : super(key: key);
+  const UpdateIDWidget({
+    Key key,
+    this.idParameter,
+  }) : super(key: key);
+
+  final DocumentReference idParameter;
 
   @override
   _UpdateIDWidgetState createState() => _UpdateIDWidgetState();
@@ -19,17 +26,14 @@ class UpdateIDWidget extends StatefulWidget {
 
 class _UpdateIDWidgetState extends State<UpdateIDWidget> {
   DateTime datePicked;
+  String uploadedFileUrl = '';
   TextEditingController iDNoController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<UserDocumentsRecord>>(
-      stream: queryUserDocumentsRecord(
-        queryBuilder: (userDocumentsRecord) => userDocumentsRecord
-            .where('DocRefToUsers', isEqualTo: currentUserReference),
-        singleRecord: true,
-      ),
+    return StreamBuilder<UserDocumentsRecord>(
+      stream: UserDocumentsRecord.getDocument(widget.idParameter),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -43,16 +47,7 @@ class _UpdateIDWidgetState extends State<UpdateIDWidget> {
             ),
           );
         }
-        List<UserDocumentsRecord> updateIDUserDocumentsRecordList =
-            snapshot.data;
-        // Return an empty Container when the document does not exist.
-        if (snapshot.data.isEmpty) {
-          return Container();
-        }
-        final updateIDUserDocumentsRecord =
-            updateIDUserDocumentsRecordList.isNotEmpty
-                ? updateIDUserDocumentsRecordList.first
-                : null;
+        final updateIDUserDocumentsRecord = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
@@ -69,7 +64,7 @@ class _UpdateIDWidgetState extends State<UpdateIDWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                Navigator.pop(context);
+                context.pop();
               },
             ),
             title: Text(
@@ -159,14 +154,61 @@ class _UpdateIDWidgetState extends State<UpdateIDWidget> {
                                             ).image,
                                           ),
                                         ),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          child: Image.network(
-                                            updateIDUserDocumentsRecord.iDImage,
-                                            width: double.infinity,
-                                            height: 200,
-                                            fit: BoxFit.cover,
+                                        child: InkWell(
+                                          onTap: () async {
+                                            final selectedMedia =
+                                                await selectMediaWithSourceBottomSheet(
+                                              context: context,
+                                              allowPhoto: true,
+                                            );
+                                            if (selectedMedia != null &&
+                                                selectedMedia.every((m) =>
+                                                    validateFileFormat(
+                                                        m.storagePath,
+                                                        context))) {
+                                              showUploadMessage(
+                                                context,
+                                                'Uploading file...',
+                                                showLoading: true,
+                                              );
+                                              final downloadUrls = (await Future
+                                                      .wait(selectedMedia.map(
+                                                          (m) async =>
+                                                              await uploadData(
+                                                                  m.storagePath,
+                                                                  m.bytes))))
+                                                  .where((u) => u != null)
+                                                  .toList();
+                                              ScaffoldMessenger.of(context)
+                                                  .hideCurrentSnackBar();
+                                              if (downloadUrls != null &&
+                                                  downloadUrls.length ==
+                                                      selectedMedia.length) {
+                                                setState(() => uploadedFileUrl =
+                                                    downloadUrls.first);
+                                                showUploadMessage(
+                                                  context,
+                                                  'Success!',
+                                                );
+                                              } else {
+                                                showUploadMessage(
+                                                  context,
+                                                  'Failed to upload media',
+                                                );
+                                                return;
+                                              }
+                                            }
+                                          },
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            child: Image.network(
+                                              updateIDUserDocumentsRecord
+                                                  .iDImage,
+                                              width: double.infinity,
+                                              height: 200,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -304,6 +346,7 @@ class _UpdateIDWidgetState extends State<UpdateIDWidget> {
                                                 iDDate: datePicked,
                                                 iDUploadDate:
                                                     getCurrentTimestamp,
+                                                iDImage: uploadedFileUrl,
                                               );
                                               await updateIDUserDocumentsRecord
                                                   .reference
@@ -317,6 +360,7 @@ class _UpdateIDWidgetState extends State<UpdateIDWidget> {
                                                 iDDate: datePicked,
                                                 iDUploadDate:
                                                     getCurrentTimestamp,
+                                                iDImage: uploadedFileUrl,
                                               );
                                               await UserDocumentsRecord.createDoc(
                                                       updateIDUserDocumentsRecord
